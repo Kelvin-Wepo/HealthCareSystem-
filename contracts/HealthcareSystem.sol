@@ -41,4 +41,21 @@ contract HealthcareTokenSystem is ERC20, Ownable, ERC20Permit {
         _mint(to, amount);
     }
 
+    modifier onlyRegisteredUser() {
+        require(users[msg.sender].isRegistered, "User not registered");
+        _;
+    }
+
+    modifier onlyDoctor() {
+        require(users[msg.sender].isDoctor, "Only doctors can perform this action");
+        _;
+    }
+
+    function registerUser(string memory _name, uint _age, string memory _gender, bool _isDoctor) public {
+        require(!users[msg.sender].isRegistered, "User already registered");
+        require(_age > 0, "Invalid age");
+        users[msg.sender] = User(_name, _age, _gender, _isDoctor, true);
+        emit UserRegistered(msg.sender, _name, _isDoctor);
+    }
+
     
