@@ -58,4 +58,33 @@ contract HealthcareTokenSystem is ERC20, Ownable, ERC20Permit {
         emit UserRegistered(msg.sender, _name, _isDoctor);
     }
 
+    function bookAppointment(address _doctor, uint256 _timestamp) public onlyRegisteredUser {
+        require(users[_doctor].isDoctor, "Invalid doctor address");
+        require(_timestamp > block.timestamp, "Appointment time must be in the future");
+
+        uint256 appointmentId = appointments.length;
+        appointments.push(Appointment(msg.sender, _doctor, _timestamp, false));
+        emit AppointmentBooked(msg.sender, _doctor, _timestamp, appointmentId);
+
+        // Transfer tokens as payment for the appointment
+        uint256 appointmentFee = 100 * 10 ** decimals(); // 100 tokens
+        require(balanceOf(msg.sender) >= appointmentFee, "Insufficient balance for appointment");
+        _transfer(msg.sender, _doctor, appointmentFee);
+    }
+
+    function confirmAppointment(uint256 _appointmentId) public onlyDoctor {
+        require(_appointmentId < appointments.length, "Invalid appointment ID");
+        Appointment storage appointment = appointments[_appointmentId];
+        require(appointment.doctor == msg.sender, "Not authorized");
+        require(!appointment.isConfirmed, "Appointment already confirmed");
+
+        appointment.isConfirmed = true;
+        emit AppointmentConfirmed(appointment.patient, msg.sender, appointment.timestamp, _appointmentId);
+    }
+
+    function getUserProfile(address _user) public view returns (User memory) {
+        require(users[_user].isRegistered, "User not found");
+        return users[_user];
+    }
+
     
