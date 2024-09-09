@@ -87,4 +87,12 @@ contract HealthcareTokenSystem is ERC20, Ownable, ERC20Permit {
         return users[_user];
     }
 
-    
+    function getAppointmentsCount() public view returns (uint256) {
+        return appointments.length;
+    }
+
+    function getAppointment(uint256 _appointmentId) public view returns (Appointment memory) {
+        require(_appointmentId < appointments.length, "Invalid appointment ID");
+        return appointments[_appointmentId];
+    }
+}
