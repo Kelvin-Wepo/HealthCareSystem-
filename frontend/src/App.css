@@ -1,0 +1,116 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  text-align: center;
+}
+
+/* // src/components/Navbar.css */
+.header {
+  background-color: #2196f3;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.navbar-links {
+  display: flex;
+  list-style-type: none;
+}
+
+.navbar-links li {
+  margin-left: 20px;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+}
+
+/* // src/pages/LandingPage.css */
+.landing-page {
+  background-color: #2196f3;
+  color: white;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.book-appointment-btn {
+  background-color: white;
+  color: #2196f3;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+/* // src/pages/RegisterPage.css */
+.register-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.register-page form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.register-page input {
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.register-page button {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* // src/pages/AppointmentPage.css */
+.appointment-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.appointment-page form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.appointment-page input {
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.appointment-page button {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
